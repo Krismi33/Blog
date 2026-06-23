@@ -1,122 +1,198 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cityInput = document.getElementById('city-input');
-    const searchBtn = document.getElementById('search-btn');
-    const cityName = document.getElementById('city-name');
-    const temperature = document.getElementById('temperature');
-    const weatherDescription = document.getElementById('weather-description');
-    const wind = document.getElementById('wind');
-    const humidity = document.getElementById('humidity');
-    const weatherIcon = document.getElementById('weather-icon');
+// Initialisation de la carte (centrée sur la France par défaut, mais sans ville sélectionnée)
+const map = L.map('map').setView([46.603354, 1.888334], 6); // Centre de la France
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
-    // Fonction pour obtenir les coordonnées d'une ville (simplifiée)
-    async function getCoordinates(city) {
-        const apiKey = 'TON_API_KEY'; // Remplace par une clé API gratuite (ex: OpenCage, Nominatim)
-        const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`);
-        const data = await response.json();
-        if (data.results && data.results.length > 0) {
-            return {
-                latitude: data.results[0].latitude,
-                longitude: data.results[0].longitude
-            };
-        }
-        throw new Error("Ville non trouvée");
-    }
+// Marqueur personnalisé (non placé au démarrage)
+const customIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32]
+});
+let marker = null;
 
-    // Fonction pour obtenir la météo
-    async function fetchWeather(latitude, longitude) {
+// Variables globales
+let currentLat = null;
+let currentLon = null;
+let currentCity = null;
+
+// Fonction pour obtenir les données météo
+async function fetchWeather(lat, lon) {
+    try {
         const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=auto`
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,dew_point_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,wind_speed_10m,wind_direction_10m,uv_index&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=7`
         );
         const data = await response.json();
-        return data.current_weather;
+        return data;
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données météo:", error);
+        return null;
     }
+}
 
-    // Mettre à jour l'interface
-    function updateWeatherUI(weather, city) {
-        cityName.textContent = city;
-        temperature.textContent = `${Math.round(weather.temperature)}°C`;
-        weatherDescription.textContent = getWeatherDescription(weather.weathercode);
-        wind.textContent = `Vent: ${weather.windspeed} km/h`;
-        humidity.textContent = `Humidité: ${Math.round(Math.random() * 100)}%`; // Exemple aléatoire
-        weatherIcon.className = `wi ${getWeatherIcon(weather.weathercode)}`;
+// Fonction pour obtenir le nom de la ville
+async function fetchCityName(lat, lon) {
+    try {
+        const response = await fetch(
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=fr`
+        );
+        const data = await response.json();
+        return data.locality || data.city || "Lieu inconnu";
+    } catch (error) {
+        console.error("Erreur lors de la récupération du nom de la ville:", error);
+        return "Lieu inconnu";
     }
+}
 
-    // Description météo en fonction du code
-    function getWeatherDescription(code) {
-        const descriptions = {
-            0: "Ciel dégagé",
-            1: "Principalement dégagé",
-            2: "Partiellement nuageux",
-            3: "Nuageux",
-            45: "Brouillard",
-            48: "Brouillard givrant",
-            51: "Bruine légère",
-            53: "Bruine modérée",
-            55: "Bruine dense",
-            61: "Pluie légère",
-            63: "Pluie modérée",
-            65: "Pluie forte",
-            71: "Chute de neige légère",
-            73: "Chute de neige modérée",
-            75: "Chute de neige forte",
-            80: "Averses légères",
-            81: "Averses modérées",
-            82: "Averses violentes",
-            95: "Orage",
-            96: "Orage avec grêle légère",
-            99: "Orage avec grêle forte"
-        };
-        return descriptions[code] || "Météo inconnue";
+// Fonction pour mettre à jour l'interface
+function updateUI(weatherData, city) {
+    // Mise à jour du nom de la ville
+    document.getElementById('location').textContent = `${city}`;
+
+    // Mise à jour des données actuelles
+    const current = weatherData.current;
+    document.getElementById('temp').textContent = `${Math.round(current.temperature_2m)}°C`;
+    document.getElementById('feels-like').textContent = `${Math.round(current.apparent_temperature)}°C`;
+    document.getElementById('humidity').textContent = `${current.relative_humidity_2m}%`;
+    document.getElementById('wind-speed').textContent = `${Math.round(current.wind_speed_10m * 3.6)} km/h`;
+    document.getElementById('wind-dir').textContent = `${getWindDirection(current.wind_direction_10m)}`;
+    document.getElementById('uv-index').textContent = `${getUVIndex(current.uv_index)}`;
+    document.getElementById('precipitation').textContent = `${current.precipitation || 0} mm`;
+    document.getElementById('snow').textContent = `${current.snow_depth || 0} cm`;
+    document.getElementById('sunrise').textContent = `${weatherData.daily.sunrise[0].split('T')[1].substring(0, 5)}`;
+    document.getElementById('sunset').textContent = `${weatherData.daily.sunset[0].split('T')[1].substring(0, 5)}`;
+
+    // Mise à jour de l'icône météo
+    const weatherCode = getWeatherCode(current);
+    document.getElementById('weather-icon').textContent = weatherCode.icon;
+    document.getElementById('weather-desc').textContent = weatherCode.desc;
+
+    // Mise à jour des prévisions
+    updateForecast(weatherData);
+
+    // Mise à jour de l'animation météo
+    updateWeatherAnimation(weatherCode.type);
+}
+
+// Fonction pour obtenir la direction du vent
+function getWindDirection(degrees) {
+    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    const index = Math.round(degrees / 22.5) % 16;
+    return directions[index];
+}
+
+// Fonction pour obtenir l'indice UV
+function getUVIndex(index) {
+    if (index <= 2) return "Faible";
+    if (index <= 5) return "Modéré";
+    if (index <= 7) return "Élevé";
+    if (index <= 10) return "Très élevé";
+    return "Extrême";
+}
+
+// Fonction pour obtenir le code météo
+function getWeatherCode(current) {
+    if (current.snowfall > 0) return { icon: '❄️', desc: 'Neige', type: 'snow' };
+    if (current.showers > 0) return { icon: '⛈️', desc: 'Averses', type: 'rain' };
+    if (current.rain > 0) return { icon: '🌧️', desc: 'Pluie', type: 'rain' };
+    if (current.precipitation_probability > 70) return { icon: '☔', desc: 'Risque de pluie', type: 'rain' };
+    if (current.uv_index > 7) return { icon: '☀️', desc: 'Ensoleillé', type: 'sun' };
+    if (current.uv_index > 4) return { icon: '⛅', desc: 'Partiellement nuageux', type: 'sun' };
+    if (current.relative_humidity_2m > 80) return { icon: '🌫️', desc: 'Brouillard', type: 'fog' };
+    return { icon: '☁️', desc: 'Nuageux', type: 'cloud' };
+}
+
+// Fonction pour mettre à jour les prévisions
+function updateForecast(weatherData) {
+    const forecastContainer = document.getElementById('forecast-container');
+    forecastContainer.innerHTML = '';
+
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(weatherData.daily.time[i]);
+        const dayName = date.toLocaleDateString('fr-FR', { weekday: 'short' });
+        const day = date.getDate();
+        const month = date.toLocaleDateString('fr-FR', { month: 'short' });
+
+        const tempMax = Math.round(weatherData.daily.temperature_2m_max[i]);
+        const tempMin = Math.round(weatherData.daily.temperature_2m_min[i]);
+
+        const forecastDay = document.createElement('div');
+        forecastDay.className = 'forecast-day';
+        forecastDay.innerHTML = `
+            <h3>${dayName} ${day} ${month}</h3>
+            <div class="forecast-icon">☁️</div>
+            <div class="forecast-temp">${tempMin}° / ${tempMax}°</div>
+        `;
+        forecastContainer.appendChild(forecastDay);
     }
+}
 
-    // Icône météo en fonction du code
-    function getWeatherIcon(code) {
-        const icons = {
-            0: "wi-day-sunny",
-            1: "wi-day-sunny-overcast",
-            2: "wi-day-cloudy",
-            3: "wi-cloudy",
-            45: "wi-fog",
-            48: "wi-fog",
-            51: "wi-sprinkle",
-            53: "wi-sprinkle",
-            55: "wi-rain",
-            61: "wi-rain",
-            63: "wi-rain",
-            65: "wi-rain-wind",
-            71: "wi-snow",
-            73: "wi-snow",
-            75: "wi-snow-wind",
-            80: "wi-showers",
-            81: "wi-showers",
-            82: "wi-thunderstorm",
-            95: "wi-thunderstorm",
-            96: "wi-hail",
-            99: "wi-hail"
-        };
-        return icons[code] || "wi-day-cloudy";
-    }
+// Fonction pour mettre à jour l'animation météo
+function updateWeatherAnimation(type) {
+    const animationContainer = document.getElementById('weather-animation');
+    animationContainer.innerHTML = '';
 
-    // Rechercher la météo
-    async function searchWeather() {
-        const city = cityInput.value.trim();
-        if (!city) return;
-
-        try {
-            const coords = await getCoordinates(city);
-            const weather = await fetchWeather(coords.latitude, coords.longitude);
-            updateWeatherUI(weather, city);
-        } catch (error) {
-            alert("Ville non trouvée ou erreur de connexion.");
+    if (type === 'rain') {
+        for (let i = 0; i < 50; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'rain-drop';
+            drop.style.left = `${Math.random() * 100}%`;
+            drop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
+            drop.style.animationDelay = `${Math.random() * 2}s`;
+            animationContainer.appendChild(drop);
         }
+    } else if (type === 'snow') {
+        for (let i = 0; i < 30; i++) {
+            const flake = document.createElement('div');
+            flake.className = 'snow-flake';
+            flake.style.left = `${Math.random() * 100}%`;
+            flake.style.animationDuration = `${2 + Math.random() * 3}s`;
+            flake.style.animationDelay = `${Math.random() * 3}s`;
+            animationContainer.appendChild(flake);
+        }
+    } else if (type === 'sun') {
+        const sun = document.createElement('div');
+        sun.className = 'sun';
+        sun.style.top = '20%';
+        sun.style.left = '80%';
+        animationContainer.appendChild(sun);
+    }
+}
+
+// Ajout du marqueur au clic sur la carte
+map.on('click', async (e) => {
+    // Supprime l'ancien marqueur s'il existe
+    if (marker) {
+        map.removeLayer(marker);
     }
 
-    // Événements
-    searchBtn.addEventListener('click', searchWeather);
-    cityInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') searchWeather();
-    });
+    // Ajoute le nouveau marqueur
+    currentLat = e.latlng.lat;
+    currentLon = e.latlng.lng;
+    marker = L.marker([currentLat, currentLon], { icon: customIcon, draggable: true }).addTo(map);
 
-    // Charger la météo par défaut (Paris)
-    searchWeather();
+    // Récupère le nom de la ville et les données météo
+    const city = await fetchCityName(currentLat, currentLon);
+    const weatherData = await fetchWeather(currentLat, currentLon);
+
+    if (weatherData && city) {
+        currentCity = city;
+        updateUI(weatherData, city);
+    }
+
+    // Gestion du drag du marqueur
+    marker.on('dragend', async (e) => {
+        currentLat = e.target._latlng.lat;
+        currentLon = e.target._latlng.lng;
+        map.setView([currentLat, currentLon], 10);
+
+        const city = await fetchCityName(currentLat, currentLon);
+        const weatherData = await fetchWeather(currentLat, currentLon);
+
+        if (weatherData && city) {
+            currentCity = city;
+            updateUI(weatherData, city);
+        }
+    });
 });
