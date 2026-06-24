@@ -3,84 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 Météo Interactive - Choisis ta ville !</title>
+    <title>🐻✨ MÉTÉO INTERACTIVE ✨🌍</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🌍 Météo Interactive</h1>
-            <p class="subtitle">Déplace le marqueur sur la carte pour choisir une ville !</p>
+            <h1>🐻✨ MÉTÉO INTERACTIVE ✨🌍</h1>
+            <p class="subtitle">🔍 Trouvez la météo en temps réel partout dans le monde !</p>
         </header>
 
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="🏙️ Entrez une ville (ex: Paris, Tokyo, New York)...">
+            <button onclick="searchCity()">🔎 Rechercher</button>
+            <button onclick="getLocation()">📍 Ma position</button>
+        </div>
+
         <div class="main-content">
-            <div class="map-container">
-                <div id="map"></div>
-            </div>
-
-            <div class="weather-info">
-                <div class="current-weather">
-                    <h2>🌤️ Météo Actuelle</h2>
-                    <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="location">Déplace le marqueur sur la carte</span>
-                    </div>
-                    <div class="weather-main">
-                        <div class="weather-icon" id="weather-icon">❓</div>
-                        <div class="temp">
-                            <span id="temp">--°C</span>
-                            <span id="weather-desc">Sélectionne une ville</span>
-                        </div>
-                    </div>
-                    <div class="details">
-                        <div class="detail">
-                            <i class="fas fa-thermometer-half"></i>
-                            <span>Température ressentie: <span id="feels-like">--°C</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-tint"></i>
-                            <span>Humidité: <span id="humidity">--%</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-wind"></i>
-                            <span>Vent: <span id="wind-speed">-- km/h</span>, <span id="wind-dir">--</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-sun"></i>
-                            <span>Indice UV: <span id="uv-index">--</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-cloud-rain"></i>
-                            <span>Précipitations: <span id="precipitation">-- mm</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Neige: <span id="snow">-- cm</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-clock"></i>
-                            <span>Lever du soleil: <span id="sunrise">--:--</span></span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-moon"></i>
-                            <span>Coucher du soleil: <span id="sunset">--:--</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="forecast">
-                    <h2>📅 Prévisions sur 7 jours</h2>
-                    <div class="forecast-container" id="forecast-container">
-                        <p style="text-align: center; color: #999;">Sélectionne une ville pour voir les prévisions</p>
-                    </div>
+            <div id="map"></div>
+            <div class="current-weather">
+                <h2>🌤️ Météo Actuelle</h2>
+                <div class="weather-grid" id="current-weather-grid">
+                    <div class="loading">⏳ Chargement...</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="weather-animation" id="weather-animation"></div>
+        <div class="forecast">
+            <h2>📅 Prévisions sur 7 jours</h2>
+            <div class="forecast-grid" id="forecast-grid">
+                <div class="loading">⏳ Chargement...</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>❤️ Site météo interactif - Données : Open-Meteo | Carte : OpenStreetMap</p>
+        </footer>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
