@@ -3,47 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐻✨ MÉTÉO INTERACTIVE ✨🌍</title>
+    <title>Kaël | Stage chez GreenCityZen</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style minimaliste et moderne */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        header {
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #2c5e2c;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            color: #5a8a5a;
+            font-size: 1.2rem;
+        }
+        .profile-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .profile-section h2 {
+            color: #2c5e2c;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2c5e2c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0.5rem;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #1e3e1e;
+        }
+        footer {
+            margin-top: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🐻✨ MÉTÉO INTERACTIVE ✨🌍</h1>
-            <p class="subtitle">🔍 Trouvez la météo en temps réel partout dans le monde !</p>
+            <h1>🌱 Kaël</h1>
+            <p class="subtitle">Stagiaire chez GreenCityZen | Marseille</p>
         </header>
 
-        <div class="search-box">
-            <input type="text" id="city-input" placeholder="🏙️ Entrez une ville (ex: Paris, Tokyo, New York)...">
-            <button onclick="searchCity()">🔎 Rechercher</button>
-            <button onclick="getLocation()">📍 Ma position</button>
-        </div>
+        <section class="profile-section">
+            <h2>👋 À propos de moi</h2>
+            <p>
+                Je m'appelle Kaël et je réalise actuellement un stage de seconde chez 
+                <strong>GreenCityZen</strong>, une entreprise engagée dans la transition écologique à Marseille.
+            </p>
+            <p>
+                Passionné par les nouvelles technologies et l'environnement, j'ai développé une 
+                <strong>application météo interactive</strong> pour explorer les données météorologiques en temps réel.
+            </p>
+        </section>
 
-        <div class="main-content">
-            <div id="map"></div>
-            <div class="current-weather">
-                <h2>🌤️ Météo Actuelle</h2>
-                <div class="weather-grid" id="current-weather-grid">
-                    <div class="loading">⏳ Chargement...</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="forecast">
-            <h2>📅 Prévisions sur 7 jours</h2>
-            <div class="forecast-grid" id="forecast-grid">
-                <div class="loading">⏳ Chargement...</div>
-            </div>
-        </div>
+        <section class="profile-section">
+            <h2>🌍 Mes projets</h2>
+            <p>
+                <a href="meteo.html" class="btn">🔗 Voir ma page météo interactive</a>
+            </p>
+        </section>
 
         <footer>
-            <p>❤️ Site météo interactif - Données : Open-Meteo | Carte : OpenStreetMap</p>
+            <p>❤️ Stage chez GreenCityZen - 2026</p>
         </footer>
     </div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>

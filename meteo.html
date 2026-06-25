@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐻✨ MÉTÉO INTERACTIVE ✨🌍</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐻✨ MÉTÉO INTERACTIVE ✨🌍</h1>
+            <p class="subtitle">🔍 Trouvez la météo en temps réel partout dans le monde !</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="🏙️ Entrez une ville (ex: Paris, Tokyo, New York)...">
+            <button onclick="searchCity()">🔎 Rechercher</button>
+            <button onclick="getLocation()">📍 Ma position</button>
+        </div>
+
+        <div class="main-content">
+            <div id="map"></div>
+            <div class="current-weather">
+                <h2>🌤️ Météo Actuelle</h2>
+                <div class="weather-grid" id="current-weather-grid">
+                    <div class="loading">⏳ Chargement...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="forecast">
+            <h2>📅 Prévisions sur 7 jours</h2>
+            <div class="forecast-grid" id="forecast-grid">
+                <div class="loading">⏳ Chargement...</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>❤️ Site météo interactif - Données : Open-Meteo | Carte : OpenStreetMap</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
