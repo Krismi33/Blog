@@ -38,11 +38,13 @@
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
+            text-align: left;
         }
         .profile-section h2 {
             color: #2c5e2c;
             border-bottom: 2px solid #e0e0e0;
             padding-bottom: 0.5rem;
+            text-align: center;
         }
         .btn {
             display: inline-block;
@@ -62,6 +64,30 @@
             margin-top: 2rem;
             color: #777;
             font-size: 0.9rem;
+            text-align: center;
+        }
+        .day {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #5a8a5a;
+        }
+        .day h3 {
+            color: #2c5e2c;
+            margin-bottom: 0.5rem;
+        }
+        .highlight {
+            background-color: #e8f5e8;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-style: italic;
+        }
+        .week {
+            margin-bottom: 2rem;
+        }
+        .week h3 {
+            color: #2c5e2c;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.3rem;
         }
     </style>
 </head>
@@ -75,11 +101,11 @@
         <section class="profile-section">
             <h2>👋 À propos de moi</h2>
             <p>
-                Je m'appelle Kaël et je réalise actuellement un stage de seconde chez 
+                Je m'appelle Kaël et je réalise actuellement un stage de seconde chez
                 <strong>GreenCityZen</strong>, une entreprise engagée dans la transition écologique à Marseille.
             </p>
             <p>
-                Passionné par les nouvelles technologies et l'environnement, j'ai développé une 
+                Passionné par les nouvelles technologies et l'environnement, j'ai développé une
                 <strong>application météo interactive</strong> pour explorer les données météorologiques en temps réel.
             </p>
         </section>
@@ -89,6 +115,73 @@
             <p>
                 <a href="meteo.html" class="btn">🔗 Voir ma page météo interactive</a>
             </p>
+        </section>
+
+        <section class="profile-section">
+            <h2>📝 Mon rapport de stage</h2>
+
+            <div class="week">
+                <h3>Semaine 1</h3>
+
+                <div class="day">
+                    <h4>Lundi</h4>
+                    <p>En début de semaine, j’ai assisté à une présentation sur le fonctionnement des capteurs, ce qui m’a permis de comprendre leur rôle dans la collecte et le traitement des données. Une réunion d’équipe a ensuite été organisée pour définir les objectifs et enjeux de la semaine.</p>
+                    <p>L’après-midi, j’ai travaillé sur les ondes (propagation, types) ainsi que sur les unités de mesure et leurs préfixes (kilo, méga, milli, etc.).</p>
+                    <p>Pour clore la journée, j’ai appris le vocabulaire technique lié aux <span class="highlight">avaloirs</span>, essentiel pour comprendre leur rôle dans les réseaux d’assainissement.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Mardi</h4>
+                    <p>Cette journée a été dédiée à la technologie et à la programmation. J’ai d’abord revu le fonctionnement de l’application <span class="highlight">Humm Box</span>, en me concentrant sur le vocabulaire des boîtiers et l’analyse de leurs défauts courants.</p>
+                    <p>L’après-midi, j’ai commencé à créer un site web : j’ai découvert les bases du codage (<span class="highlight">HTML, CSS</span>) et les principes de la programmation.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Mercredi</h4>
+                    <p>Nous sommes allés sur le terrain, au <span class="highlight">Parc Pastré</span>, pour une journée pratique. J’ai participé au remplacement des piles et des antennes des boîtiers défectueux. J’ai également pris des photos pour documentation et identifié divers problèmes techniques (usure, dysfonctionnements).</p>
+                    <p>Observation inattendue : la présence de <span class="highlight">nids d’insectes</span> dans certains boîtiers, ainsi que des vols de matériel sur certains sites.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Jeudi</h4>
+                    <p>J’ai consacré cette journée à la création d’un site web complet. J’ai développé un <span class="highlight">simulateur interactif</span> (par exemple, pour des calculs liés aux capteurs), intégré un quiz (questions sur les ondes, les capteurs, etc.), et ajouté une section actualités sportives (notamment sur la Coupe du Monde de football).</p>
+                    <p>En fin de journée, nous avons vérifié l’état des boîtiers installés en extérieur ainsi que celui des avaloirs.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Vendredi</h4>
+                    <p>Pour clore la semaine, j’ai travaillé sur un mini-projet informatique : la création d’un <span class="highlight">mini-jeu en HTML et JavaScript</span>. Ce jeu reposait sur des interactions simples avec l’utilisateur, comme un quiz ou une simulation de capteurs.</p>
+                </div>
+            </div>
+
+            <div class="week">
+                <h3>Semaine 2</h3>
+
+                <div class="day">
+                    <h4>Lundi</h4>
+                    <p>Pour entamer cette deuxième semaine, une réunion d’une heure a permis de faire un point sur les objectifs à atteindre.</p>
+                    <p>Ensuite, j’ai travaillé sur la création d’une <span class="highlight">page web dédiée à la météo</span>, hébergée sur GitHub. Cette page permet de visualiser en temps réel des données comme l’humidité, la vitesse du vent, les précipitations, et de prévoir les risques de pluie.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Mardi</h4>
+                    <p>J’ai mis en ligne la page météo sur <span class="highlight">GitHub Pages</span>. Le site est désormais accessible via ce lien :</p>
+                    <p><a href="https://krismi33.github.io/Blog/" class="btn">🔗 Visiter la page météo</a></p>
+                    <p>J’ai vérifié que toutes les fonctionnalités s’affichaient correctement et que les données étaient à jour.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Mercredi</h4>
+                    <p>J’ai finalisé les derniers détails du site web (design, fonctionnalités supplémentaires).</p>
+                    <p>Parallèlement, j’ai participé aux tests des nouveaux modèles de boîtiers : prise de mesures de performances (précision, autonomie, résistance). J’ai également scanné des cartes techniques et enregistré les noms des fournisseurs ainsi que les types de boîtiers pour notre base de données.</p>
+                </div>
+
+                <div class="day">
+                    <h4>Jeudi</h4>
+                    <p>J’ai créé une page de présentation résumant tous les projets réalisés pendant ces deux semaines (sites web, jeux, observations, etc.).</p>
+                    <p>En parallèle, j’ai terminé de prendre les mesures des nouveaux modèles de boîtiers pour valider leur bon fonctionnement en conditions réelles.</p>
+                </div>
+            </div>
         </section>
 
         <footer>
