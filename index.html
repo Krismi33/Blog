@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -129,6 +129,47 @@
             display: inline-block;
             margin-top: 0.5rem;
         }
+
+        /* Style pour les modales */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .fifa-modal-content {
+            background: linear-gradient(135deg, #003087, #0052b9);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -152,6 +193,8 @@
             <h2>💻 Mes projets</h2>
             <p>Voici quelques-uns des projets sur lesquels j'ai travaillé pendant mon stage :</p>
             <p><a href="https://krismi33.github.io/Blog/" class="project-link">🔗 Site météo interactif (GitHub Pages)</a></p>
+            <p><a href="#" class="project-link" onclick="openNeonTimer()">🔗 Compte à rebours Neon (HTML, CSS, JavaScript)</a></p>
+            <p><a href="#" class="project-link" onclick="openFifaSite()">🔗 Site FIFA World Cup 2026 (HTML, CSS, JavaScript)</a></p>
         </section>
 
         <!-- Semaine 1 -->
@@ -160,32 +203,32 @@
 
             <div class="day">
                 <h3>Lundi</h3>
-                <p>En début de semaine, j’ai assisté à une présentation sur le fonctionnement des capteurs, ce qui m’a permis de comprendre leur rôle dans la collecte et le traitement des données. Une réunion d’équipe a ensuite été organisée pour définir les objectifs et enjeux de la semaine.</p>
-                <p>L’après-midi, j’ai travaillé sur les ondes (propagation, types) ainsi que sur les unités de mesure et leurs préfixes (kilo, méga, milli, etc.).</p>
-                <p>Pour clore la journée, j’ai appris le vocabulaire technique lié aux <span class="highlight">avaloirs</span>, essentiel pour comprendre leur rôle dans les réseaux d’assainissement.</p>
+                <p>En début de semaine, j'ai assisté à une présentation sur le fonctionnement des capteurs, ce qui m'a permis de comprendre leur rôle dans la collecte et le traitement des données. Une réunion d'équipe a ensuite été organisée pour définir les objectifs et enjeux de la semaine.</p>
+                <p>L'après-midi, j'ai travaillé sur les ondes (propagation, types) ainsi que sur les unités de mesure et leurs préfixes (kilo, méga, milli, etc.).</p>
+                <p>Pour clore la journée, j'ai appris le vocabulaire technique lié aux <span class="highlight">avaloirs</span>, essentiel pour comprendre leur rôle dans les réseaux d'assainissement.</p>
             </div>
 
             <div class="day">
                 <h3>Mardi</h3>
-                <p>Cette journée a été dédiée à la technologie et à la programmation. J’ai d’abord revu le fonctionnement de l’application <span class="highlight">Humm Box</span>, en me concentrant sur le vocabulaire des boîtiers et l’analyse de leurs défauts courants.</p>
-                <p>L’après-midi, j’ai commencé à créer un site web : j’ai découvert les bases du codage (<span class="highlight">HTML, CSS</span>) et les principes de la programmation.</p>
+                <p>Cette journée a été dédiée à la technologie et à la programmation. J'ai d'abord revu le fonctionnement de l'application <span class="highlight">Humm Box</span>, en me concentrant sur le vocabulaire des boîtiers et l'analyse de leurs défauts courants.</p>
+                <p>L'après-midi, j'ai commencé à créer un site web : j'ai découvert les bases du codage (<span class="highlight">HTML, CSS</span>) et les principes de la programmation.</p>
             </div>
 
             <div class="day">
                 <h3>Mercredi</h3>
-                <p>Nous sommes allés sur le terrain, au <span class="highlight">Parc Pastré</span>, pour une journée pratique. J’ai participé au remplacement des piles et des antennes des boîtiers défectueux. J’ai également pris des photos pour documentation et identifié divers problèmes techniques (usure, dysfonctionnements).</p>
-                <p>Observation inattendue : la présence de <span class="highlight">nids d’insectes</span> dans certains boîtiers, ainsi que des vols de matériel sur certains sites.</p>
+                <p>Nous sommes allés sur le terrain, au <span class="highlight">Parc Pastré</span>, pour une journée pratique. J'ai participé au remplacement des piles et des antennes des boîtiers défectueux. J'ai également pris des photos pour documentation et identifié divers problèmes techniques (usure, dysfonctionnements).</p>
+                <p>Observation inattendue : la présence de <span class="highlight">nids d'insectes</span> dans certains boîtiers, ainsi que des vols de matériel sur certains sites.</p>
             </div>
 
             <div class="day">
                 <h3>Jeudi</h3>
-                <p>J’ai consacré cette journée à la création d’un site web complet. J’ai développé un <span class="highlight">simulateur interactif</span> (par exemple, pour des calculs liés aux capteurs), intégré un quiz (questions sur les ondes, les capteurs, etc.), et ajouté une section actualités sportives (notamment sur la Coupe du Monde de football).</p>
-                <p>En fin de journée, nous avons vérifié l’état des boîtiers installés en extérieur ainsi que celui des avaloirs.</p>
+                <p>J'ai consacré cette journée à la création d'un site web complet. J'ai développé un <span class="highlight">simulateur interactif</span> (par exemple, pour des calculs liés aux capteurs), intégré un quiz (questions sur les ondes, les capteurs, etc.), et ajouté une section actualités sportives (notamment sur la Coupe du Monde de football).</p>
+                <p>En fin de journée, nous avons vérifié l'état des boîtiers installés en extérieur ainsi que celui des avaloirs.</p>
             </div>
 
             <div class="day">
                 <h3>Vendredi</h3>
-                <p>Pour clore la semaine, j’ai travaillé sur un mini-projet informatique : la création d’un <span class="highlight">mini-jeu en HTML et JavaScript</span>. Ce jeu reposait sur des interactions simples avec l’utilisateur, comme un quiz ou une simulation de capteurs.</p>
+                <p>Pour clore la semaine, j'ai travaillé sur un mini-projet informatique : la création d'un <span class="highlight">mini-jeu en HTML et JavaScript</span>. Ce jeu reposait sur des interactions simples avec l'utilisateur, comme un quiz ou une simulation de capteurs.</p>
             </div>
         </section>
 
@@ -195,27 +238,32 @@
 
             <div class="day">
                 <h3>Lundi</h3>
-                <p>Pour entamer cette deuxième semaine, une réunion d’une heure a permis de faire un point sur les objectifs à atteindre.</p>
-                <p>Ensuite, j’ai travaillé sur la création d’une <span class="highlight">page web dédiée à la météo</span>, hébergée sur GitHub. Cette page permet de visualiser en temps réel des données comme l’humidité, la vitesse du vent, les précipitations, et de prévoir les risques de pluie.</p>
+                <p>Pour entamer cette deuxième semaine, une réunion d'une heure a permis de faire un point sur les objectifs à atteindre.</p>
+                <p>Ensuite, j'ai travaillé sur la création d'une <span class="highlight">page web dédiée à la météo</span>, hébergée sur GitHub. Cette page permet de visualiser en temps réel des données comme l'humidité, la vitesse du vent, les précipitations, et de prévoir les risques de pluie.</p>
             </div>
 
             <div class="day">
                 <h3>Mardi</h3>
-                <p>J’ai mis en ligne la page météo sur <span class="highlight">GitHub Pages</span>. Le site est désormais accessible via ce lien :</p>
+                <p>J'ai mis en ligne la page météo sur <span class="highlight">GitHub Pages</span>. Le site est désormais accessible via ce lien :</p>
                 <p><a href="https://krismi33.github.io/Blog/" class="project-link">🔗 Visiter la page météo</a></p>
-                <p>J’ai vérifié que toutes les fonctionnalités s’affichaient correctement et que les données étaient à jour.</p>
+                <p>J'ai vérifié que toutes les fonctionnalités s'affichaient correctement et que les données étaient à jour.</p>
             </div>
 
             <div class="day">
                 <h3>Mercredi</h3>
-                <p>J’ai finalisé les derniers détails du site web (design, fonctionnalités supplémentaires).</p>
-                <p>Parallèlement, j’ai participé aux tests des nouveaux modèles de boîtiers : prise de mesures de performances (précision, autonomie, résistance). J’ai également scanné des cartes techniques et enregistré les noms des fournisseurs ainsi que les types de boîtiers pour notre base de données.</p>
+                <p>J'ai finalisé les derniers détails du site web (design, fonctionnalités supplémentaires).</p>
+                <p>Parallèlement, j'ai participé aux tests des nouveaux modèles de boîtiers : prise de mesures de performances (précision, autonomie, résistance). J'ai également scanné des cartes techniques et enregistré les noms des fournisseurs ainsi que les types de boîtiers pour notre base de données.</p>
             </div>
 
             <div class="day">
                 <h3>Jeudi</h3>
-                <p>J’ai créé une page de présentation résumant tous les projets réalisés pendant ces deux semaines (sites web, jeux, observations, etc.).</p>
-                <p>En parallèle, j’ai terminé de prendre les mesures des nouveaux modèles de boîtiers pour valider leur bon fonctionnement en conditions réelles.</p>
+                <p>J'ai créé une page de présentation résumant tous les projets réalisés pendant ces deux semaines (sites web, jeux, observations, etc.).</p>
+                <p>En parallèle, j'ai terminé de prendre les mesures des nouveaux modèles de boîtiers pour valider leur bon fonctionnement en conditions réelles.</p>
+            </div>
+
+            <div class="day">
+                <h3>Vendredi</h3>
+                <p>Pour clôturer ces deux semaines de stage, nous avons finalisé notre <span class="highlight">compte à rebours interactif</span>. Ce projet, développé en HTML, CSS et JavaScript, permet de lancer un décompte personnalisable avec des effets visuels (clignotements, secousses d'écran) et sonores (basse profonde) pour marquer la fin du temps. Une façon ludique et technique de conclure cette expérience enrichissante !</p>
             </div>
         </section>
     </main>
@@ -223,5 +271,215 @@
     <footer>
         <p>Rapport de stage - Krismi33 | 2026</p>
     </footer>
+
+    <!-- MODALE COMPTE À REBOURS NEON -->
+    <div id="neonModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeNeonTimer()">×</button>
+            <h2 style="color: #ff2ced; text-align: center;">⏰ COMPTE À REBOURS NEON</h2>
+            <div id="neonTimer" style="font-size: 3rem; color: #0af2ff; text-align: center; margin: 20px 0; letter-spacing: 5px;">00:00:00</div>
+            <div id="neonStatus" style="text-align: center; margin: 10px 0;">Prêt à démarrer</div>
+            <div style="display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap;">
+                <input type="number" id="neonHours" min="0" max="23" value="0" placeholder="Heures" style="width: 80px; padding: 8px; border-radius: 5px; border: 2px solid #0af2ff; background: transparent; color: white;">
+                <input type="number" id="neonMinutes" min="0" max="59" value="1" placeholder="Minutes" style="width: 80px; padding: 8px; border-radius: 5px; border: 2px solid #0af2ff; background: transparent; color: white;">
+                <input type="number" id="neonSeconds" min="0" max="59" value="0" placeholder="Secondes" style="width: 80px; padding: 8px; border-radius: 5px; border: 2px solid #0af2ff; background: transparent; color: white;">
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
+                <button onclick="neonStart()" id="neonStartBtn" style="padding: 10px 20px; background: #00ff9d; border: none; border-radius: 5px; color: white; cursor: pointer;">DÉMARRER</button>
+                <button onclick="neonPause()" id="neonPauseBtn" disabled style="padding: 10px 20px; background: #bf00ff; border: none; border-radius: 5px; color: white; cursor: pointer;">PAUSE</button>
+                <button onclick="neonReset()" id="neonResetBtn" style="padding: 10px 20px; background: #ff2ced; border: none; border-radius: 5px; color: white; cursor: pointer;">RÉINITIALISER</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALE SITE FIFA 2026 -->
+    <div id="fifaModal" class="modal">
+        <div class="modal-content fifa-modal-content">
+            <button class="modal-close" onclick="closeFifaSite()">×</button>
+            <div style="text-align: center; font-size: 3rem; margin-bottom: 10px;">⚽</div>
+            <h2 style="text-align: center; margin-bottom: 15px;">FIFA World Cup 2026</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Bienvenue sur le site de la Coupe du Monde 2026 !</p>
+            <div style="background: rgba(245, 191, 0, 0.2); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <h3 style="color: #f5bf00; margin-bottom: 10px; text-align: center;">⏰ Compte à rebours</h3>
+                <div id="fifaCountdown" style="display: flex; justify-content: center; gap: 8px; font-size: 1.5rem; font-weight: bold; flex-wrap: wrap;">
+                    <span id="fifaDays">00</span>j
+                    <span id="fifaHours">00</span>h
+                    <span id="fifaMinutes">00</span>m
+                    <span id="fifaSeconds">00</span>s
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Coup d'envoi : 11 juin 2026 à 13h00 (heure de Paris)</p>
+            </div>
+            <div id="fifaTeams" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                <h3 style="grid-column: 1 / -1; text-align: center; margin-bottom: 10px;">Équipes qualifiées</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== COMPTE À REBOURS NEON =====
+        let neonTimer;
+        let neonSeconds = 0;
+        let neonRunning = false;
+        let neonPaused = false;
+
+        function openNeonTimer() {
+            document.getElementById('neonModal').style.display = 'flex';
+            neonUpdateDisplay();
+        }
+
+        function closeNeonTimer() {
+            document.getElementById('neonModal').style.display = 'none';
+            neonStop();
+        }
+
+        function neonUpdateDisplay() {
+            const h = Math.floor(neonSeconds / 3600);
+            const m = Math.floor((neonSeconds % 3600) / 60);
+            const s = neonSeconds % 60;
+            document.getElementById('neonTimer').textContent =
+                h.toString().padStart(2, '0') + ':' +
+                m.toString().padStart(2, '0') + ':' +
+                s.toString().padStart(2, '0');
+        }
+
+        function neonStart() {
+            if (neonRunning) return;
+
+            const hours = parseInt(document.getElementById('neonHours').value) || 0;
+            const minutes = parseInt(document.getElementById('neonMinutes').value) || 0;
+            const seconds = parseInt(document.getElementById('neonSeconds').value) || 0;
+            neonSeconds = hours * 3600 + minutes * 60 + seconds;
+
+            if (neonSeconds <= 0) {
+                alert('Veuillez définir un temps supérieur à 0');
+                return;
+            }
+
+            neonRunning = true;
+            neonPaused = false;
+            document.getElementById('neonStartBtn').disabled = true;
+            document.getElementById('neonPauseBtn').disabled = false;
+            document.getElementById('neonStatus').textContent = 'En cours...';
+
+            neonTimer = setInterval(() => {
+                neonSeconds--;
+                neonUpdateDisplay();
+
+                if (neonSeconds <= 0) {
+                    clearInterval(neonTimer);
+                    neonRunning = false;
+                    document.getElementById('neonStartBtn').disabled = false;
+                    document.getElementById('neonPauseBtn').disabled = true;
+                    document.getElementById('neonStatus').textContent = 'Terminé !';
+                }
+            }, 1000);
+
+            neonUpdateDisplay();
+        }
+
+        function neonPause() {
+            if (!neonRunning || neonPaused) return;
+            neonPaused = true;
+            clearInterval(neonTimer);
+            document.getElementById('neonPauseBtn').disabled = true;
+            document.getElementById('neonStartBtn').disabled = false;
+            document.getElementById('neonStatus').textContent = 'En pause';
+        }
+
+        function neonStop() {
+            clearInterval(neonTimer);
+            neonRunning = false;
+            neonPaused = false;
+            document.getElementById('neonStartBtn').disabled = false;
+            document.getElementById('neonPauseBtn').disabled = true;
+            document.getElementById('neonStatus').textContent = 'Arrêté';
+        }
+
+        function neonReset() {
+            neonStop();
+            neonSeconds = 0;
+            document.getElementById('neonTimer').textContent = '00:00:00';
+            document.getElementById('neonHours').value = '0';
+            document.getElementById('neonMinutes').value = '1';
+            document.getElementById('neonSeconds').value = '0';
+            document.getElementById('neonStatus').textContent = 'Prêt à démarrer';
+        }
+
+        // ===== SITE FIFA 2026 =====
+        const fifaKickoff = new Date('2026-06-11T13:00:00+02:00');
+        const fifaTeamsData = [
+            { name: "France 🇫🇷", group: "A" },
+            { name: "Brésil 🇧🇷", group: "B" },
+            { name: "Argentine 🇦🇷", group: "C" },
+            { name: "Espagne 🇪🇸", group: "D" },
+            { name: "Angleterre 🇬🇧", group: "E" },
+            { name: "Allemagne 🇩🇪", group: "F" },
+            { name: "Mexique 🇲🇽", group: "A" },
+            { name: "États-Unis 🇺🇸", group: "B" },
+            { name: "Canada 🇨🇦", group: "C" },
+            { name: "Maroc 🇲🇦", group: "D" },
+            { name: "Japon 🇯🇵", group: "E" },
+            { name: "Belgique 🇧🇪", group: "F" }
+        ];
+
+        function openFifaSite() {
+            document.getElementById('fifaModal').style.display = 'flex';
+            fifaUpdateCountdown();
+            fifaDisplayTeams();
+            setInterval(fifaUpdateCountdown, 1000);
+        }
+
+        function closeFifaSite() {
+            document.getElementById('fifaModal').style.display = 'none';
+        }
+
+        function fifaUpdateCountdown() {
+            const now = new Date();
+            const diff = fifaKickoff - now;
+
+            if (diff <= 0) {
+                document.getElementById('fifaDays').textContent = '00';
+                document.getElementById('fifaHours').textContent = '00';
+                document.getElementById('fifaMinutes').textContent = '00';
+                document.getElementById('fifaSeconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('fifaDays').textContent = days.toString().padStart(2, '0');
+            document.getElementById('fifaHours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('fifaMinutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('fifaSeconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        function fifaDisplayTeams() {
+            const container = document.getElementById('fifaTeams');
+            container.innerHTML = '<h3 style="grid-column: 1 / -1; text-align: center; margin-bottom: 10px;">Équipes qualifiées</h3>';
+
+            fifaTeamsData.forEach(team => {
+                const el = document.createElement('div');
+                el.style.background = 'rgba(255, 255, 255, 0.1)';
+                el.style.padding = '10px';
+                el.style.borderRadius = '8px';
+                el.style.border = '1px solid #f5bf00';
+                el.innerHTML = '<strong>' + team.name + '</strong><br><small>Groupe ' + team.group + '</small>';
+                container.appendChild(el);
+            });
+        }
+
+        // Fermer les modales en cliquant à l'extérieur
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('neonModal')) {
+                closeNeonTimer();
+            }
+            if (event.target == document.getElementById('fifaModal')) {
+                closeFifaSite();
+            }
+        }
+    </script>
 </body>
 </html>
