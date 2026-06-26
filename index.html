@@ -3,190 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaël | Stage chez GreenCityZen</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Rapport de Stage - Krismi33</title>
     <style>
-        /* Style minimaliste et moderne */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            background-color: #f4f9f4;
-            color: #333;
-            line-height: 1.6;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-        }
+
         header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
             margin-bottom: 2rem;
         }
-        h1 {
-            color: #2c5e2c;
+
+        header h1 {
+            margin: 0;
             font-size: 2.5rem;
         }
-        .subtitle {
-            color: #5a8a5a;
-            font-size: 1.2rem;
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
-        .profile-section {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-me, .my-projects {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-            text-align: left;
+            padding: 1.5rem;
         }
-        .profile-section h2 {
-            color: #2c5e2c;
-            border-bottom: 2px solid #e0e0e0;
+
+        .about-me h2, .my-projects h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 0.5rem;
-            text-align: center;
+            margin-top: 0;
         }
-        .btn {
-            display: inline-block;
-            background-color: #2c5e2c;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0.5rem;
-            transition: background-color 0.3s;
+
+        .week {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
         }
-        .btn:hover {
-            background-color: #1e3e1e;
+
+        .week h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
         }
-        footer {
-            margin-top: 2rem;
-            color: #777;
-            font-size: 0.9rem;
-            text-align: center;
-        }
+
         .day {
             margin-bottom: 1.5rem;
             padding-left: 1rem;
-            border-left: 4px solid #5a8a5a;
+            border-left: 4px solid var(--secondary-color);
         }
+
         .day h3 {
-            color: #2c5e2c;
+            color: var(--secondary-color);
             margin-bottom: 0.5rem;
         }
+
+        .day p {
+            margin: 0.3rem 0;
+        }
+
+        .day ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .day li {
+            margin: 0.3rem 0;
+        }
+
         .highlight {
-            background-color: #e8f5e8;
+            background-color: #fffde7;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-style: italic;
         }
-        .week {
-            margin-bottom: 2rem;
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
         }
-        .week h3 {
-            color: #2c5e2c;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 0.3rem;
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 0.5rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🌱 Kaël</h1>
-            <p class="subtitle">Stagiaire chez GreenCityZen | Marseille</p>
-        </header>
+    <header>
+        <div class="container">
+            <h1>Rapport de Stage</h1>
+            <p>Krismi33 - Développement & Technologie</p>
+        </div>
+    </header>
 
-        <section class="profile-section">
-            <h2>👋 À propos de moi</h2>
-            <p>
-                Je m'appelle Kaël et je réalise actuellement un stage de seconde chez
-                <strong>GreenCityZen</strong>, une entreprise engagée dans la transition écologique à Marseille.
-            </p>
-            <p>
-                Passionné par les nouvelles technologies et l'environnement, j'ai développé une
-                <strong>application météo interactive</strong> pour explorer les données météorologiques en temps réel.
-            </p>
+    <main class="container">
+        <!-- Section "À propos de moi" -->
+        <section class="about-me">
+            <h2>👤 À propos de moi</h2>
+            <p>Je m'appelle Kaël et je réalise actuellement un stage de seconde chez GreenCityZen, une entreprise engagée dans la transition écologique à Marseille.</p>
+            <p>Passionné par les nouvelles technologies et l'environnement, j'ai développé une application météo interactive pour explorer les données météorologiques en temps réel.</p>
         </section>
 
-        <section class="profile-section">
-            <h2>🌍 Mes projets</h2>
-            <p>
-                <a href="meteo.html" class="btn">🔗 Voir ma page météo interactive</a>
-            </p>
+        <!-- Section "Mes projets" -->
+        <section class="my-projects">
+            <h2>💻 Mes projets</h2>
+            <p>Voici quelques-uns des projets sur lesquels j'ai travaillé pendant mon stage :</p>
+            <p><a href="https://krismi33.github.io/Blog/" class="project-link">🔗 Site météo interactif (GitHub Pages)</a></p>
         </section>
 
-        <section class="profile-section">
-            <h2>📝 Mon rapport de stage</h2>
+        <!-- Semaine 1 -->
+        <section class="week">
+            <h2>📅 Semaine 1</h2>
 
-            <div class="week">
-                <h3>Semaine 1</h3>
-
-                <div class="day">
-                    <h4>Lundi</h4>
-                    <p>En début de semaine, j’ai assisté à une présentation sur le fonctionnement des capteurs, ce qui m’a permis de comprendre leur rôle dans la collecte et le traitement des données. Une réunion d’équipe a ensuite été organisée pour définir les objectifs et enjeux de la semaine.</p>
-                    <p>L’après-midi, j’ai travaillé sur les ondes (propagation, types) ainsi que sur les unités de mesure et leurs préfixes (kilo, méga, milli, etc.).</p>
-                    <p>Pour clore la journée, j’ai appris le vocabulaire technique lié aux <span class="highlight">avaloirs</span>, essentiel pour comprendre leur rôle dans les réseaux d’assainissement.</p>
-                </div>
-
-                <div class="day">
-                    <h4>Mardi</h4>
-                    <p>Cette journée a été dédiée à la technologie et à la programmation. J’ai d’abord revu le fonctionnement de l’application <span class="highlight">Humm Box</span>, en me concentrant sur le vocabulaire des boîtiers et l’analyse de leurs défauts courants.</p>
-                    <p>L’après-midi, j’ai commencé à créer un site web : j’ai découvert les bases du codage (<span class="highlight">HTML, CSS</span>) et les principes de la programmation.</p>
-                </div>
-
-                <div class="day">
-                    <h4>Mercredi</h4>
-                    <p>Nous sommes allés sur le terrain, au <span class="highlight">Parc Pastré</span>, pour une journée pratique. J’ai participé au remplacement des piles et des antennes des boîtiers défectueux. J’ai également pris des photos pour documentation et identifié divers problèmes techniques (usure, dysfonctionnements).</p>
-                    <p>Observation inattendue : la présence de <span class="highlight">nids d’insectes</span> dans certains boîtiers, ainsi que des vols de matériel sur certains sites.</p>
-                </div>
-
-                <div class="day">
-                    <h4>Jeudi</h4>
-                    <p>J’ai consacré cette journée à la création d’un site web complet. J’ai développé un <span class="highlight">simulateur interactif</span> (par exemple, pour des calculs liés aux capteurs), intégré un quiz (questions sur les ondes, les capteurs, etc.), et ajouté une section actualités sportives (notamment sur la Coupe du Monde de football).</p>
-                    <p>En fin de journée, nous avons vérifié l’état des boîtiers installés en extérieur ainsi que celui des avaloirs.</p>
-                </div>
-
-                <div class="day">
-                    <h4>Vendredi</h4>
-                    <p>Pour clore la semaine, j’ai travaillé sur un mini-projet informatique : la création d’un <span class="highlight">mini-jeu en HTML et JavaScript</span>. Ce jeu reposait sur des interactions simples avec l’utilisateur, comme un quiz ou une simulation de capteurs.</p>
-                </div>
+            <div class="day">
+                <h3>Lundi</h3>
+                <p>En début de semaine, j’ai assisté à une présentation sur le fonctionnement des capteurs, ce qui m’a permis de comprendre leur rôle dans la collecte et le traitement des données. Une réunion d’équipe a ensuite été organisée pour définir les objectifs et enjeux de la semaine.</p>
+                <p>L’après-midi, j’ai travaillé sur les ondes (propagation, types) ainsi que sur les unités de mesure et leurs préfixes (kilo, méga, milli, etc.).</p>
+                <p>Pour clore la journée, j’ai appris le vocabulaire technique lié aux <span class="highlight">avaloirs</span>, essentiel pour comprendre leur rôle dans les réseaux d’assainissement.</p>
             </div>
 
-            <div class="week">
-                <h3>Semaine 2</h3>
+            <div class="day">
+                <h3>Mardi</h3>
+                <p>Cette journée a été dédiée à la technologie et à la programmation. J’ai d’abord revu le fonctionnement de l’application <span class="highlight">Humm Box</span>, en me concentrant sur le vocabulaire des boîtiers et l’analyse de leurs défauts courants.</p>
+                <p>L’après-midi, j’ai commencé à créer un site web : j’ai découvert les bases du codage (<span class="highlight">HTML, CSS</span>) et les principes de la programmation.</p>
+            </div>
 
-                <div class="day">
-                    <h4>Lundi</h4>
-                    <p>Pour entamer cette deuxième semaine, une réunion d’une heure a permis de faire un point sur les objectifs à atteindre.</p>
-                    <p>Ensuite, j’ai travaillé sur la création d’une <span class="highlight">page web dédiée à la météo</span>, hébergée sur GitHub. Cette page permet de visualiser en temps réel des données comme l’humidité, la vitesse du vent, les précipitations, et de prévoir les risques de pluie.</p>
-                </div>
+            <div class="day">
+                <h3>Mercredi</h3>
+                <p>Nous sommes allés sur le terrain, au <span class="highlight">Parc Pastré</span>, pour une journée pratique. J’ai participé au remplacement des piles et des antennes des boîtiers défectueux. J’ai également pris des photos pour documentation et identifié divers problèmes techniques (usure, dysfonctionnements).</p>
+                <p>Observation inattendue : la présence de <span class="highlight">nids d’insectes</span> dans certains boîtiers, ainsi que des vols de matériel sur certains sites.</p>
+            </div>
 
-                <div class="day">
-                    <h4>Mardi</h4>
-                    <p>J’ai mis en ligne la page météo sur <span class="highlight">GitHub Pages</span>. Le site est désormais accessible via ce lien :</p>
-                    <p><a href="https://krismi33.github.io/Blog/" class="btn">🔗 Visiter la page météo</a></p>
-                    <p>J’ai vérifié que toutes les fonctionnalités s’affichaient correctement et que les données étaient à jour.</p>
-                </div>
+            <div class="day">
+                <h3>Jeudi</h3>
+                <p>J’ai consacré cette journée à la création d’un site web complet. J’ai développé un <span class="highlight">simulateur interactif</span> (par exemple, pour des calculs liés aux capteurs), intégré un quiz (questions sur les ondes, les capteurs, etc.), et ajouté une section actualités sportives (notamment sur la Coupe du Monde de football).</p>
+                <p>En fin de journée, nous avons vérifié l’état des boîtiers installés en extérieur ainsi que celui des avaloirs.</p>
+            </div>
 
-                <div class="day">
-                    <h4>Mercredi</h4>
-                    <p>J’ai finalisé les derniers détails du site web (design, fonctionnalités supplémentaires).</p>
-                    <p>Parallèlement, j’ai participé aux tests des nouveaux modèles de boîtiers : prise de mesures de performances (précision, autonomie, résistance). J’ai également scanné des cartes techniques et enregistré les noms des fournisseurs ainsi que les types de boîtiers pour notre base de données.</p>
-                </div>
-
-                <div class="day">
-                    <h4>Jeudi</h4>
-                    <p>J’ai créé une page de présentation résumant tous les projets réalisés pendant ces deux semaines (sites web, jeux, observations, etc.).</p>
-                    <p>En parallèle, j’ai terminé de prendre les mesures des nouveaux modèles de boîtiers pour valider leur bon fonctionnement en conditions réelles.</p>
-                </div>
+            <div class="day">
+                <h3>Vendredi</h3>
+                <p>Pour clore la semaine, j’ai travaillé sur un mini-projet informatique : la création d’un <span class="highlight">mini-jeu en HTML et JavaScript</span>. Ce jeu reposait sur des interactions simples avec l’utilisateur, comme un quiz ou une simulation de capteurs.</p>
             </div>
         </section>
 
-        <footer>
-            <p>❤️ Stage chez GreenCityZen - 2026</p>
-        </footer>
-    </div>
+        <!-- Semaine 2 -->
+        <section class="week">
+            <h2>📅 Semaine 2</h2>
+
+            <div class="day">
+                <h3>Lundi</h3>
+                <p>Pour entamer cette deuxième semaine, une réunion d’une heure a permis de faire un point sur les objectifs à atteindre.</p>
+                <p>Ensuite, j’ai travaillé sur la création d’une <span class="highlight">page web dédiée à la météo</span>, hébergée sur GitHub. Cette page permet de visualiser en temps réel des données comme l’humidité, la vitesse du vent, les précipitations, et de prévoir les risques de pluie.</p>
+            </div>
+
+            <div class="day">
+                <h3>Mardi</h3>
+                <p>J’ai mis en ligne la page météo sur <span class="highlight">GitHub Pages</span>. Le site est désormais accessible via ce lien :</p>
+                <p><a href="https://krismi33.github.io/Blog/" class="project-link">🔗 Visiter la page météo</a></p>
+                <p>J’ai vérifié que toutes les fonctionnalités s’affichaient correctement et que les données étaient à jour.</p>
+            </div>
+
+            <div class="day">
+                <h3>Mercredi</h3>
+                <p>J’ai finalisé les derniers détails du site web (design, fonctionnalités supplémentaires).</p>
+                <p>Parallèlement, j’ai participé aux tests des nouveaux modèles de boîtiers : prise de mesures de performances (précision, autonomie, résistance). J’ai également scanné des cartes techniques et enregistré les noms des fournisseurs ainsi que les types de boîtiers pour notre base de données.</p>
+            </div>
+
+            <div class="day">
+                <h3>Jeudi</h3>
+                <p>J’ai créé une page de présentation résumant tous les projets réalisés pendant ces deux semaines (sites web, jeux, observations, etc.).</p>
+                <p>En parallèle, j’ai terminé de prendre les mesures des nouveaux modèles de boîtiers pour valider leur bon fonctionnement en conditions réelles.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Rapport de stage - Krismi33 | 2026</p>
+    </footer>
 </body>
 </html>
